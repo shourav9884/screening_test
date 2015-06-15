@@ -12,9 +12,12 @@ class Weather extends CI_Controller {
 		
 		$lib=new screen_LIB();
 		$q=$this->input->get('q');
-		// var_dump($q);
-		// $question="what is the temperature in dhaka?";
+		
 		$r=$lib->getWeather($q);
+		if($r=="No answer found")
+			$this->output->set_status_header('404');
+		else 
+			$this->output->set_status_header('200');
 		$this->output->set_content_type('application/json')->set_output(json_encode(array("answer"=>$r)));
 	}
 	

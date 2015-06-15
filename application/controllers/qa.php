@@ -25,18 +25,14 @@ class Qa extends CI_Controller {
 		
 		$lib=new screen_LIB();
 		$answer=$lib->getQA($this->input->get('q'));
+		if($answer=="Your majesty! Jon Snow knows nothing! So do I!")
+			$this->output->set_status_header('404');
+		else
+			$this->output->set_status_header('200');
 		$this->output->set_content_type('application/json')->set_output(json_encode(array("answer"=>$answer)));
 		// $this->load->view('welcome_message');
 	}
-	public function test()
-	{
-		$result=$this->Testmodel->get();
-		var_dump($result);
-	}
-	public function insert()
-	{
-		$this->Testmodel->insert();
-	}
+	
 }
 
 /* End of file welcome.php */
